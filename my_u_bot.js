@@ -41,7 +41,7 @@ controller.hears(['hi'], 'message_received', luis.middleware.hereIntent, functio
             convo.next();
         } else {
             convo.say('Did someone say cookies!?!!');
-                convo.say('Top intent is: ' + message.topIntent);
+                convo.say('Top intent is: ' + JSON.stringify(message.topIntent));
         }
     });
 });
