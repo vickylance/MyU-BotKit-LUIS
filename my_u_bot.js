@@ -24,7 +24,14 @@ controller.setupWebserver(process.env.PORT, function (err, webserver) {
 });
 
 controller.hears(['hi'], 'message_received', luis.middleware.hereIntent, function (bot, message) {
-
+    
+    controller.middleware.send.use(function (bot, message, next) {
+        // do something useful...
+        if (message.intent == 'PolicyIssuance_PayPremium') {
+            message.text = 'Hello!!!';
+        }
+        next();
+    });
     bot.startConversation(message, function (err, convo) {
         if (message.intent == 'PolicyIssuance_PayPremium') {
             convo.say('Pay Premium');
@@ -34,7 +41,11 @@ controller.hears(['hi'], 'message_received', luis.middleware.hereIntent, functio
             convo.next();
         } else {
             convo.say('Did someone say cookies!?!!');
-            convo.say(message.intent);
+            if (message.intent != null || message.intent !== undefined) {
+                convo.say(message.intent);
+            } else {
+                convo.say('message.intent is null or undefined');
+            }
         }
     });
 });
