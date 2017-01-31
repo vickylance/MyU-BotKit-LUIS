@@ -33,10 +33,10 @@ controller.hears(['hi'], 'message_received', luis.middleware.hereIntent, functio
         next();
     });
     bot.startConversation(message, function (err, convo) {
-        if (message.topIntent == 'PolicyIssuance_PayPremium') {
+        if (message.topIntent.intent == 'PolicyIssuance_PayPremium') {
             convo.say('Pay Premium');
             convo.next();
-        } else if (message.topIntent == 'PolicyIssuance_TrackPolicy') {
+        } else if (message.topIntent.intent == 'PolicyIssuance_TrackPolicy') {
             convo.say('Track policy');
             convo.next();
         } else {
