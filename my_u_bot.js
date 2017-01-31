@@ -34,10 +34,7 @@ controller.hears(['hi'], 'message_received', luis.middleware.hereIntent, functio
             convo.next();
         } else {
             convo.say('Did someone say cookies!?!!');
-            convo.ask('What is your favorite type of cookie?', function (response, convo) {
-                convo.say('Golly, I love ' + response.text + ' too!!!');
-                convo.next();
-            });
+            convo.say(message.intent);
         }
     });
 });
