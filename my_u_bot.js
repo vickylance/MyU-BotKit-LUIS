@@ -2,6 +2,7 @@ var Botkit = require('botkit');
 var Express = require('express');
 var BotBuilder = require('botbuilder');
 var luis = require('botkit-middleware-luis');
+var faqs = require('../faqs.js');
 
 var luisOptions = {
     serviceUri: process.env.SERVICE_URI
@@ -33,8 +34,9 @@ controller.setupWebserver(process.env.PORT, function (err, webserver) {
 controller.hears(Utterances.greetings, 'message_received', luis.middleware.hereIntent, function (bot, message) {
 
     bot.startConversation(message, function (err, convo) {
-        if (message.topIntent.intent == 'PolicyIssuance_TrackPolicy') {
-            convo.say('Track policy');
+        if (message.topIntent.intent in faqs) {
+            convo.say('An Intent exists');
+            convo.say(faqs[message.topIntent.intent]);
             convo.next();
         } else {
             convo.say('Did someone say cookies!?!!');
