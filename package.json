@@ -1,0 +1,27 @@
+{
+  "name": "myu-botkit-luis",
+  "version": "1.0.0",
+  "description": "MyU Bot implementation using Botkit and having Botbuilder as a backend for NLP.",
+  "main": "my_u_bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/vickylance/MyU-BotKit-LUIS.git"
+  },
+  "keywords": [
+    "MyU"
+  ],
+  "author": "S.Vignesh, Pandu, Neetu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vickylance/MyU-BotKit-LUIS/issues"
+  },
+  "homepage": "https://github.com/vickylance/MyU-BotKit-LUIS#readme",
+  "dependencies": {
+    "botbuilder": "^3.5.4",
+    "botkit": "^0.4.10",
+    "express": "^4.14.1"
+  }
+}
