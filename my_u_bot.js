@@ -27,16 +27,13 @@ controller.hears(['hi'], 'message_received', luis.middleware.hereIntent, functio
     
     controller.middleware.send.use(function (bot, message, next) {
         // do something useful...
-        if (message.topIntent == 'PolicyIssuance_PayPremium') {
+        if (message.topIntent.intent == 'PolicyIssuance_PayPremium') {
             message.text = 'Hello!!!';
         }
         next();
     });
     bot.startConversation(message, function (err, convo) {
-        if (message.topIntent.intent == 'PolicyIssuance_PayPremium') {
-            convo.say('Pay Premium');
-            convo.next();
-        } else if (message.topIntent.intent == 'PolicyIssuance_TrackPolicy') {
+        if (message.topIntent.intent == 'PolicyIssuance_TrackPolicy') {
             convo.say('Track policy');
             convo.next();
         } else {
