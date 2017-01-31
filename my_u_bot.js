@@ -1,8 +1,15 @@
 var Botkit = require('botkit');
 var Express = require('express');
+var BotBuilder = require('botbuilder');
+var luis = require('./lib/luis-middleware.js');
+
+var luisOptions = {
+    serviceUri: process.env.SERVICE_URI
+};
 
 var controller = Botkit.botframeworkbot({
 });
+controller.middleware.receive.use(luis.middleware.receive(luisOptions));
 
 var bot = controller.spawn({
         appId: process.env.APP_ID,
@@ -17,14 +24,7 @@ controller.setupWebserver(process.env.PORT,function(err,webserver) {
   });
 });
 
-// user said hello
-controller.hears(['hello'], 'message_received', function(bot, message) {
-
-    bot.reply(message, 'Hey there.');
-
-});
-
-controller.hears(['cookies'], 'message_received', function(bot, message) {
+controller.hears(['PolicyIssuance_PayPremium'], 'message_received', luis.middleware.hereIntent, function(bot, message) {
 
     bot.startConversation(message, function(err, convo) {
 
@@ -34,4 +34,8 @@ controller.hears(['cookies'], 'message_received', function(bot, message) {
             convo.next();
         });
     });
+});
+
+controller.hears(['PolicyIssuance_TrackPolicy'],['direct_message','direct_mention','mention'], luis.middleware.hereIntent, function(bot,message) {
+    bot.reply(message,"Hello.");
 });
