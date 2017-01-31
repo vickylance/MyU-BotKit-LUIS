@@ -35,12 +35,10 @@ controller.hears(Utterances.greetings, 'message_received', luis.middleware.hereI
 
     bot.startConversation(message, function (err, convo) {
         if (message.topIntent.intent in faqs) {
-            convo.say('An Intent exists');
             convo.say(faqs[message.topIntent.intent]);
             convo.next();
         } else {
-            convo.say('Did someone say cookies!?!!');
-            convo.say('Top intent is: ' + JSON.stringify(message.topIntent));
+            convo.say('Hi there');
         }
     });
 });
