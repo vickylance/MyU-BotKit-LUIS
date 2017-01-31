@@ -1,7 +1,7 @@
 var Botkit = require('botkit');
 var Express = require('express');
 var BotBuilder = require('botbuilder');
-var luis = require('./lib/luis-middleware.js');
+var luis = require('luis-middleware');
 
 var luisOptions = {
     serviceUri: process.env.SERVICE_URI
