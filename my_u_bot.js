@@ -41,11 +41,7 @@ controller.hears(['hi'], 'message_received', luis.middleware.hereIntent, functio
             convo.next();
         } else {
             convo.say('Did someone say cookies!?!!');
-            if (message.topIntent != null || message.topIntent !== undefined) {
-                convo.say(message.topIntent);
-            } else {
-                convo.say('message.topIntent is null or undefined');
-            }
+                convo.say('Top intent is: ' + message.topIntent);
         }
     });
 });
