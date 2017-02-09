@@ -1,40 +1,40 @@
 /************* LUIS Bot - Start **************/
-// var Botkit = require('botkit');
-// var Express = require('express');
-// var BotBuilder = require('botbuilder');
-// var luis = require('botkit-middleware-luis');
-// var faqs = require('./faqs.js');
+var Botkit = require('botkit');
+var Express = require('express');
+var BotBuilder = require('botbuilder');
+var luis = require('botkit-middleware-luis');
+var faqs = require('./faqs.js');
 
-// var luisOptions = {
-//     serviceUri: process.env.SERVICE_URI
-// };
+var luisOptions = {
+    serviceUri: process.env.SERVICE_URI
+};
 
-// var controller = Botkit.botframeworkbot({});
-// controller.middleware.receive.use(luis.middleware.receive(luisOptions));
+var controller = Botkit.botframeworkbot({});
+controller.middleware.receive.use(luis.middleware.receive(luisOptions));
 
-// var bot = controller.spawn({
-//     appId: process.env.APP_ID,
-//     appPassword: process.env.APP_PASSWORD
-// });
+var bot = controller.spawn({
+    appId: process.env.APP_ID,
+    appPassword: process.env.APP_PASSWORD
+});
 
 // if you are already using Express, you can use your own server instance...
 // see "Use BotKit with an Express web server"
-// controller.setupWebserver(process.env.PORT, function (err, webserver) {
-//     controller.createWebhookEndpoints(controller.webserver, bot, function () {
-//         console.log('This bot is online!!!');
-//     });
-// });
+controller.setupWebserver(process.env.PORT, function (err, webserver) {
+    controller.createWebhookEndpoints(controller.webserver, bot, function () {
+        console.log('This bot is online!!!');
+    });
+});
 /************* LUIS Bot - End ****************/
 
 /************* Console Bot - Start **************/
-var Botkit = require('botkit');
-var os = require('os');
+// var Botkit = require('botkit');
+// var os = require('os');
 
-var controller = Botkit.consolebot({
-    debug: false,
-});
+// var controller = Botkit.consolebot({
+//     debug: false,
+// });
 
-var bot = controller.spawn();
+// var bot = controller.spawn();
 /************* Console Bot - End ****************/
 
 var Utterances = {
